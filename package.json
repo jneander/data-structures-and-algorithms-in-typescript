@@ -1,13 +1,36 @@
 {
   "scripts": {
+    "lint:eslint": "eslint .",
+    "lint:eslint:fix": "eslint --fix .",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "test:types": "tsc --noEmit",
     "test:types:watch": "tsc --noEmit --watch"
   },
   "author": "Jeremy Neander <jeremy.neander@gmail.com> (https://jneander.dev/)",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@jneander/prettier-config": "^1.0.0",
     "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "prettier": "^3.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
-  }
+  },
+  "eslintConfig": {
+    "extends": [
+      "./config/eslint.config.cjs"
+    ]
+  },
+  "prettier": "@jneander/prettier-config"
 }
