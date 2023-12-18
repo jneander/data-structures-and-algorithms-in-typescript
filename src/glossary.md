@@ -29,6 +29,26 @@ matching a specific condition. Searching typically determines either the existen
 element, a referenceable position of a known element such as its index, or the element itself when a
 condition is used to identify it.
 
+# Time Complexity (or Running Time)
+
+The runtime of an algorithm is expressed as a math formula. Since the real-world runtime is affected
+by any number of circumstantial factors, the runtime is expressed without units. This more simply
+describes how much computation time is required to run an algorithm. This also makes it simpler to
+compare the runtimes of different algorithms for efficiency. This concept is referred to as **Time
+Complexity** and is represented in Big-O notation—e.g. O(n) or O(1).
+
+Below is a list of common complexity values in increasing order:
+
+1. O(1)
+2. O(log n)
+3. O(n)
+4. O(n log n)
+5. O(n²)
+6. O(n² log n)
+7. O(n³)
+8. O(2ⁿ)
+9. O(n!)
+
 ## Traversal
 
 Traversal is the process of iteratively accessing connected (or adjacent) elements in a data
