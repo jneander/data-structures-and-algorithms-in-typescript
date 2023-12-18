@@ -22,3 +22,9 @@ To maximize consistency in code style, this repo uses prettier. To validate code
 To minimize issues from problematic practices and to provide additional feedback in configured IDEs,
 this repo uses eslint. To validate code against preconfigured eslint rules, run `lint:eslint`. To
 automatically fix any eslint issues, run `lint:eslint:fix`.
+
+### Testing & Specification
+
+The code in this repo is specified in part through the accompanying spec files. These serve not just
+to document the intended behavior, but also to enforce it wherever tests are run. To run the tests,
+use `test:mocha`. To run them continuously, use `test:mocha:watch`.
