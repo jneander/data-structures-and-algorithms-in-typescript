@@ -1,10 +1,10 @@
 import {expect} from 'chai'
 
-import {DoublyLinkedList} from './doubly-linked-list'
+import {SinglyLinkedList} from './singly-linked-list'
 
-describe('data-structures > sets > doubly-linked-list', () => {
-  describe('DoublyLinkedList', () => {
-    function listToArray<T>(list: DoublyLinkedList<T>) {
+describe('data-structures > sets > linked-lists', () => {
+  describe('SinglyLinkedList', () => {
+    function listToArray<T>(list: SinglyLinkedList<T>) {
       const items: T[] = []
 
       for (const item of list.iterateForward()) {
@@ -14,146 +14,90 @@ describe('data-structures > sets > doubly-linked-list', () => {
       return items
     }
 
-    function listToArrayReverse<T>(list: DoublyLinkedList<T>) {
-      const items: T[] = []
-
-      for (const item of list.iterateReverse()) {
-        items.push(item)
-      }
-
-      return items
-    }
-
     describe('#length', () => {
       it('is zero when the list has no elements', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         expect(list.length).to.equal(0)
       })
     })
 
     describe('#append()', () => {
       it('adds an element to the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         expect(listToArray(list)).to.eql([123])
       })
 
       it('adds to the end of the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         expect(listToArray(list)).to.eql([123, 456])
       })
 
       it('increments the length of the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         expect(list.length).to.equal(2)
-      })
-
-      it('maintains reverse structure', () => {
-        const list = new DoublyLinkedList<number>()
-        list.append(123)
-        list.append(456)
-        list.append(789)
-        expect(listToArrayReverse(list)).to.eql([789, 456, 123])
       })
     })
 
     describe('#prepend()', () => {
       it('adds an element to the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.prepend(123)
         expect(listToArray(list)).to.eql([123])
       })
 
       it('adds to the start of the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.prepend(456)
         expect(listToArray(list)).to.eql([456, 123])
       })
 
       it('increments the length of the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.prepend(456)
         expect(list.length).to.equal(2)
-      })
-
-      it('maintains reverse structure', () => {
-        const list = new DoublyLinkedList<number>()
-        list.prepend(123)
-        list.prepend(456)
-        list.prepend(789)
-        expect(listToArrayReverse(list)).to.eql([123, 456, 789])
       })
     })
 
     describe('#insertAt()', () => {
       it('adds the given element to the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.insertAt(123, 0)
         expect(listToArray(list)).to.eql([123])
       })
 
-      context('when given an index of 0', () => {
-        it('adds to the start of the list', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 0)
-          expect(listToArray(list)).to.eql([789, 123, 456])
-        })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 0)
-          expect(listToArrayReverse(list)).to.eql([456, 123, 789])
-        })
+      it('adds to the start of the list when given an index of 0', () => {
+        const list = new SinglyLinkedList<number>()
+        list.append(123)
+        list.append(456)
+        list.insertAt(789, 0)
+        expect(listToArray(list)).to.eql([789, 123, 456])
       })
 
-      context('when given an index equal to the list length', () => {
-        it('adds to the end of the list', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 2)
-          expect(listToArray(list)).to.eql([123, 456, 789])
-        })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 2)
-          expect(listToArrayReverse(list)).to.eql([789, 456, 123])
-        })
+      it('adds to the end of the list when given an index equal to the list length', () => {
+        const list = new SinglyLinkedList<number>()
+        list.append(123)
+        list.append(456)
+        list.insertAt(789, 2)
+        expect(listToArray(list)).to.eql([123, 456, 789])
       })
 
-      context('when given an index with an existing element', () => {
-        it('positions the element before the existing element', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 1)
-          expect(listToArray(list)).to.eql([123, 789, 456])
-        })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.insertAt(789, 1)
-          expect(listToArrayReverse(list)).to.eql([456, 789, 123])
-        })
+      it('positions the element before an existing element at the given index', () => {
+        const list = new SinglyLinkedList<number>()
+        list.append(123)
+        list.append(456)
+        list.insertAt(789, 1)
+        expect(listToArray(list)).to.eql([123, 789, 456])
       })
 
       it('increments the length of the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         list.insertAt(789, 1)
@@ -162,7 +106,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
       context('when the given index is negative', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.insertAt(789, -1)
@@ -170,7 +114,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.insertAt(789, -1)
@@ -180,7 +124,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
       context('when the given index exceeds the list length', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -189,7 +133,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -202,36 +146,29 @@ describe('data-structures > sets > doubly-linked-list', () => {
     describe('#remove()', () => {
       context('when the given element is the only element in the list', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.remove(123)
           expect(listToArray(list)).to.eql([])
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.remove(123)
           expect(list.length).to.equal(0)
         })
 
         it('returns the element', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           expect(list.remove(123)).to.equal(123)
-        })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.remove(123)
-          expect(listToArrayReverse(list)).to.eql([])
         })
       })
 
       context('when the given element is the first of multiple elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -240,27 +177,18 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
           list.remove(123)
           expect(list.length).to.equal(2)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.remove(123)
-          expect(listToArrayReverse(list)).to.eql([789, 456])
-        })
       })
 
       context('when the given element is among many elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -271,7 +199,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -282,7 +210,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns the element', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -290,22 +218,11 @@ describe('data-structures > sets > doubly-linked-list', () => {
           list.append(567)
           expect(list.remove(789)).to.equal(789)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.append(234)
-          list.append(567)
-          list.remove(789)
-          expect(listToArrayReverse(list)).to.eql([567, 234, 456, 123])
-        })
       })
 
       context('when the given element is the last of multiple elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -314,27 +231,18 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
           list.remove(789)
           expect(list.length).to.equal(2)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.remove(789)
-          expect(listToArrayReverse(list)).to.eql([456, 123])
-        })
       })
 
       context('when the given element is not in the list', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.remove(0)
@@ -342,7 +250,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.remove(0)
@@ -350,7 +258,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns undefined', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           expect(list.remove(0)).to.be.undefined
@@ -361,21 +269,21 @@ describe('data-structures > sets > doubly-linked-list', () => {
     describe('#removeAt()', () => {
       context('when the given element is the only element in the list', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.removeAt(0)
           expect(listToArray(list)).to.eql([])
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.removeAt(0)
           expect(list.length).to.equal(0)
         })
 
         it('returns the element', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           expect(list.removeAt(0)).to.equal(123)
         })
@@ -383,7 +291,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
       context('when the given element is the first of multiple elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -392,27 +300,18 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
           list.removeAt(0)
           expect(list.length).to.equal(2)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.removeAt(0)
-          expect(listToArrayReverse(list)).to.eql([789, 456])
-        })
       })
 
       context('when the given element is among many elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -423,7 +322,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -434,7 +333,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns the element', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -442,22 +341,11 @@ describe('data-structures > sets > doubly-linked-list', () => {
           list.append(567)
           expect(list.removeAt(2)).to.equal(789)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.append(234)
-          list.append(567)
-          list.removeAt(2)
-          expect(listToArrayReverse(list)).to.eql([567, 234, 456, 123])
-        })
       })
 
       context('when the given element is the last of multiple elements', () => {
         it('removes the element from the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -466,27 +354,18 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('decrements the length of the list', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
           list.removeAt(2)
           expect(list.length).to.equal(2)
         })
-
-        it('maintains reverse structure', () => {
-          const list = new DoublyLinkedList<number>()
-          list.append(123)
-          list.append(456)
-          list.append(789)
-          list.removeAt(2)
-          expect(listToArrayReverse(list)).to.eql([456, 123])
-        })
       })
 
       context('when the given index is negative', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.removeAt(-1)
@@ -494,7 +373,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.removeAt(-1)
@@ -502,7 +381,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns undefined', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           expect(list.removeAt(-1)).to.be.undefined
@@ -511,7 +390,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
       context('when the given index equals the list length', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -520,7 +399,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -529,7 +408,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns undefined', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -539,7 +418,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
       context('when the given index exceeds the list length', () => {
         it('does not modify existing list elements', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -548,7 +427,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('does not modify the list length', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -557,7 +436,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
         })
 
         it('returns undefined', () => {
-          const list = new DoublyLinkedList<number>()
+          const list = new SinglyLinkedList<number>()
           list.append(123)
           list.append(456)
           list.append(789)
@@ -568,7 +447,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
     describe('#reverse()', () => {
       it('reverses the order of elements in the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         list.append(789)
@@ -577,30 +456,21 @@ describe('data-structures > sets > doubly-linked-list', () => {
       })
 
       it('has no effect on a list with one element', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         expect(listToArray(list)).to.eql([123])
       })
 
       it('has no effect on an empty list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.reverse()
         expect(listToArray(list)).to.eql([])
-      })
-
-      it('maintains reverse structure', () => {
-        const list = new DoublyLinkedList<number>()
-        list.append(123)
-        list.append(456)
-        list.append(789)
-        list.reverse()
-        expect(listToArrayReverse(list)).to.eql([123, 456, 789])
       })
     })
 
     describe('#iterateForward()', () => {
       it('iterates over each element in the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         list.append(789)
@@ -615,7 +485,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
       })
 
       it('does not iterate when the list is empty', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         const items: number[] = []
 
         for (const item of list.iterateForward()) {
@@ -628,7 +498,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
 
     describe('#iterateReverse()', () => {
       it('iterates over each element in the list', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         list.append(123)
         list.append(456)
         list.append(789)
@@ -643,7 +513,7 @@ describe('data-structures > sets > doubly-linked-list', () => {
       })
 
       it('does not iterate when the list is empty', () => {
-        const list = new DoublyLinkedList<number>()
+        const list = new SinglyLinkedList<number>()
         const items: number[] = []
 
         for (const item of list.iterateReverse()) {
