@@ -1,6 +1,7 @@
 import {expect} from 'chai'
 
-import {type BinaryTreeNode, containsBreadth, containsDepth} from './search'
+import type {BinaryTreeNode} from '../types'
+import {containsBreadth, containsDepth} from './search'
 
 describe('data-structures > trees > binary-tree > search', () => {
   describe('containsDepth()', () => {

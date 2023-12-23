@@ -1,10 +1,5 @@
 import {Queue} from '../../../sets/queue/queue'
-
-export type BinaryTreeNode<T> = {
-  value: T
-  left?: BinaryTreeNode<T>
-  right?: BinaryTreeNode<T>
-}
+import type {BinaryTreeNode} from '../types'
 
 function walkPreorder<T>(node: BinaryTreeNode<T> | null, path: T[]): T[] {
   if (!node) {

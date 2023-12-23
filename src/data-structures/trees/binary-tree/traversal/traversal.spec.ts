@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 
-import type {BinaryTreeNode} from './traversal'
+import type {BinaryTreeNode} from '../types'
 import {traverseBreadth, traverseInorder, traversePostorder, traversePreorder} from './traversal'
 
 describe('data-structures > trees > binary-tree > traversal', () => {
