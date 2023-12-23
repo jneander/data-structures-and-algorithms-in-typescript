@@ -15,12 +15,72 @@ array[index] = value // write value
 
 Access to a a known index of a given array is performed in constant time, O(1).
 
+## Balanced
+
+A tree is _perfectly_ balanced when the children of the root or any node have the same height.
+
+## Binary Search Tree
+
+A type of binary tree which maintains a specific order to all nodes, such that for any given node
+(including the root), all nodes at any level on one side precede the given node in order, while all
+nodes at any level on the other succeed the given node in order.
+
+## Binary Tree
+
+A tree in which each node can only have 0, 1, or 2 children.
+
+## Branching Factor
+
+The number of children within a tree.
+
+## Breadth-first Traversal
+
+In tree data structures, a breadth-first traversal visits the direct children of a node before
+visiting any indirect children (or children of the given node's children).
+
+## Depth-first Traversal
+
+In tree data structures, a depth-first traversal visits each node in a single branch, in sequence,
+before visiting any nodes on any other branches.
+
+## General Tree
+
+A tree with 0 or more children.
+
+## Height
+
+Height for a tree is defined as the longest path from the root to the most child node, a child which
+itself has no children.
+
+## Inorder Tree Traversal
+
+Inorder traversal of a tree is recursive, visiting the preceding children of a node, followed by the
+node, then the succeeding children of the node. This is a depth-first traversal.
+
+## Leaf
+
+A tree node which has no children.
+
 ## List
 
 A list is an abstract data structure which stores elements in linear order, but not necessarily in
 contiguous memory. Typically, each element in a list would have the same data type. But this may or
 may not be enforced by either the programming language's type system or the specific implementation
 of the list.
+
+## Postorder Tree Traversal
+
+Postorder traversal of a tree is recursive, visiting the preceding children of a node, followed by
+the succeeding children of the node, then the node. This is a depth-first traversal.
+
+## Preorder Tree Traversal
+
+Preorder traversal of a tree is recursive, visiting each node, followed by the preceding children of
+the node, then the succeeding children of the node. This is a depth-first traversal.
+
+## Root
+
+The most parent node in a tree.
 
 ## Search
 
