@@ -1,5 +1,10 @@
 # Glossary
 
+## Acyclic
+
+A graph is considered acyclic when none of its nodes are connected such that walking their
+connections starting at one of the connected nodes will eventually return to that same node.
+
 ## Array
 
 An array is a data structure which stores elements of the same type in contiguous memory. Typically,
@@ -38,14 +43,38 @@ The number of children within a tree.
 In tree data structures, a breadth-first traversal visits the direct children of a node before
 visiting any indirect children (or children of the given node's children).
 
+## Connected
+
+A connected graph is one in which in which every node can reach every other node, with consideration
+for direction.
+
+## Cycle
+
+In a graph, a cycle is when three or more nodes are connected such that walking their connections
+starting at one of the connected nodes will eventually return to that same node.
+
 ## Depth-first Traversal
 
 In tree data structures, a depth-first traversal visits each node in a single branch, in sequence,
 before visiting any nodes on any other branches.
 
+## Directed
+
+A directed graph is one in which there is an explicit, directional relationship between any two
+nodes.
+
+## Edge
+
+In a graph, an edge is a connection between any two nodes.
+
 ## General Tree
 
 A tree with 0 or more children.
+
+## Graph
+
+A graph is a data structure which is composed of nodes (units of information) and relationships
+between those nodes.
 
 ## Height
 
@@ -67,6 +96,15 @@ A list is an abstract data structure which stores elements in linear order, but 
 contiguous memory. Typically, each element in a list would have the same data type. But this may or
 may not be enforced by either the programming language's type system or the specific implementation
 of the list.
+
+## Node
+
+A node is a unit of information contained within a data structure. In a linear data structure, such
+as a linked list, each node has a position relative to other nodes which determines how the
+information is accessed.
+
+In a graph, a node is explicitly connected to zero or more other nodes. These connections determine
+how the information is accessed.
 
 ## Postorder Tree Traversal
 
@@ -116,3 +154,16 @@ structure that is composed of elements that are implicitly or explicitly related
 the case of arrays, two elements having indices that are one integer apart are considered adjacent,
 and thereby related. Traversal through an array would start at a given index—e.g. 5—then step to
 either the next or previous index—e.g. 6 or 4, respectively.
+
+## Undirected
+
+An undirected graph is one in which there is no directional relationship between any two nodes.
+
+## Vertex
+
+In a graph, a vertex is the common name for a node.
+
+## Weighted
+
+A weighted graph is one in which the edges of the graph have an explicit value which influences how
+a graph is walked, typically in terms of efficiency.
