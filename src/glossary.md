@@ -43,6 +43,11 @@ The number of children within a tree.
 In tree data structures, a breadth-first traversal visits the direct children of a node before
 visiting any indirect children (or children of the given node's children).
 
+## Collision
+
+In a map, a collision is when two keys result in the same hash and therefore reference the same
+value in the map.
+
 ## Connected
 
 A connected graph is one in which in which every node can reach every other node, with consideration
@@ -86,6 +91,11 @@ itself has no children.
 Inorder traversal of a tree is recursive, visiting the preceding children of a node, followed by the
 node, then the succeeding children of the node. This is a depth-first traversal.
 
+## Key
+
+In a map, a key is a value that is hashable and is used to look up a value in the map. The hash
+mechanism and result must be consistent.
+
 ## Leaf
 
 A tree node which has no children.
@@ -96,6 +106,11 @@ A list is an abstract data structure which stores elements in linear order, but 
 contiguous memory. Typically, each element in a list would have the same data type. But this may or
 may not be enforced by either the programming language's type system or the specific implementation
 of the list.
+
+## Load Factor
+
+In a data structure, the load factor is the amount of data points divided by the total storage
+capacity. Put another way, this is the percentage of storage capacity currently used to hold data.
 
 ## Node
 
@@ -158,6 +173,10 @@ either the next or previous index—e.g. 6 or 4, respectively.
 ## Undirected
 
 An undirected graph is one in which there is no directional relationship between any two nodes.
+
+## Value
+
+In a map, a value is the stored data associated with a key.
 
 ## Vertex
 
